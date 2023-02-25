@@ -1,6 +1,6 @@
 {
   "name": "use-user-settings",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a package with use-user-settings. Hook that implements useState-like behaviour working with local storage",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
