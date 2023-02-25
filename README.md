@@ -24,11 +24,13 @@ type UseUserSettingsType = <T>(
 ) => [T, (value: T) => void];
 ```
 
-`defaultValue` - just like `useState` - you can provide with value or with getter function
+Params:
 
-`key` - local storage key that will identify the setting
+-`defaultValue` - just like `useState` - you can provide with value or with getter function
 
-`prefix` - default = `uus_p_`. if you need to specify prefix for your setting keys. Might be useful if you want to wrap this hook in your own like this:
+-`key` - local storage key that will identify the setting
+
+-`prefix` - default = `uus_p_`. if you need to specify prefix for your setting keys. Might be useful if you want to wrap this hook in your own like this:
 
 ```tsx
 import { useUserSettings } from 'use-user-settings';
