@@ -1,6 +1,7 @@
 # use-user-settings
 
 Package that allows to easily work with user settings, storing them to local storage
+Just replace your useState with useUserSettings, and add second parameter - unique key for saving
 
 Pretty simple to use:
 
@@ -16,12 +17,12 @@ const Component = () => {
 
 Params as they are
 
-```tsx
+```ts
 type UseUserSettingsType = <T>(
   defaultValue?: T | (() => T),
   key?: string,
   prefix?: string
-) => [T, (value: T) => void];
+) => [T, (value: SetStateAction<T>) => void];
 ```
 
 Params:
@@ -30,10 +31,10 @@ Params:
 - `key` - local storage key that will identify the setting
 - `prefix` - default = `uus_p_`. if you need to specify prefix for your setting keys. Might be useful if you want to wrap this hook in your own like this:
 
-```tsx
+```ts
 import { useUserSettings } from 'use-user-settings';
 
-export const useOurUserSettings = <T,>(
+export const useOurUserSettings = <T>(
   defaultValue?: T | (() => T),
   key?: string
 ) => {

@@ -1,4 +1,9 @@
 import { useState } from 'react';
+import type { SetStateAction } from 'react';
+
+const isFunction = <T>(setter: T | Function): setter is Function => {
+  return typeof setter === 'function';
+};
 
 const tryParseJson = (maybeJson: any): any => {
   try {
@@ -29,9 +34,13 @@ export const useUserSettings = <T>(
     thisKey ? getLocalStorageValue(thisKey) ?? defaultValue : defaultValue
   );
 
-  const handleChange = (value: T) => {
-    setValue(value);
-    !!thisKey && setLocalStorageValue(thisKey, value);
+  const handleChange = (value: SetStateAction<T>) => {
+    setValue(oldValue => {
+      const newValue = isFunction(value) ? value(oldValue) : value;
+      !!thisKey && setLocalStorageValue(thisKey, newValue);
+
+      return newValue;
+    });
   };
 
   return [value, handleChange] as const;
